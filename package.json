@@ -1,0 +1,17 @@
+{
+  "name": "nba-top-plays",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "query": "node query.js",
+    "submit": "node submit.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^4.10.2",
+    "snoowrap": "^1.14.2"
+  }
+}
