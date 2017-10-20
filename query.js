@@ -6,8 +6,9 @@ const config = require("./config");
 
 const reddit = new snoowrap(config);
 
-// start of season (oct 18, 2017)
+// start of season videos (oct 18, 2017)
 const MIN_TIMESTAMP = 1508299200;
+// start of season weeks (oct, 16, 2017)
 const MIN_SCORE = 100;
 const DATE = d3.timeFormat("%m-%d-%Y")(new Date());
 
@@ -36,34 +37,43 @@ function scrubPost(d) {
   };
 }
 
-function query() {
-  reddit
-    .getSubreddit("nba")
-    .search({
-      query: "streamable",
-      time: "week",
-      sort: "new",
-      limit: 100
-    })
-    .then(response => {
-      if (response) {
-        // fs.writeFileSync(`output/test.json`, JSON.stringify(response, null, 2));
-        const filtered = response
-          .filter(d => d.url.includes("streamable.com"))
-          .filter(d => d.score > MIN_SCORE)
-          .filter(d => d.created_utc > MIN_SCORE);
+function query(source) {
+  return new Promise((resolve, reject) => {
+    reddit
+      .getSubreddit("nba")
+      .search({
+        query: source,
+        time: "week",
+        sort: "new",
+        limit: 100
+      })
+      .then(response => {
+        if (response) {
+          fs.writeFileSync(
+            `output/test-${source}.json`,
+            JSON.stringify(response, null, 2)
+          );
+          const filtered = response
+            .filter(d => d.url.includes(`${source}.com`))
+            .filter(d => d.score > MIN_SCORE)
+            .filter(d => d.created_utc > MIN_SCORE);
 
-        const scrubbed = filtered.map(scrubPost);
-        const formatted = d3.csvFormat(scrubbed);
-        fs.writeFileSync(`output/${DATE}.csv`, formatted);
-        console.log(`${formatted.length} posts`);
-        process.exit();
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      setTimeout(query, 2000);
-    });
+          const scrubbed = filtered.map(scrubPost);
+          console.log(`${source}: ${scrubbed.length} posts`);
+          resolve(scrubbed);
+        }
+      })
+      .catch(reject);
+  });
 }
 
-query();
+const sources = ["streamable", "gfycat"];
+const queries = sources.map(query);
+
+Promise.all(queries)
+  .then(results => {
+    const joined = [].concat(...results);
+    const formatted = d3.csvFormat(joined);
+    fs.writeFileSync(`output/${DATE}.csv`, formatted);
+  })
+  .catch(console.error);
