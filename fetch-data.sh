@@ -13,13 +13,13 @@ function getRedditToken() {
 	https://www.reddit.com/api/v1/access_token \
 	| jq '.access_token' \
 	| awk '{ gsub(/"/, "") } 1' \
-	> token
+	> $PWD/token
 }
 
 function queryRedditAPI() {
 	local TOKEN=$(< token)
 	local TERM="$1"
-	local DATE=$(date -u +"%Y-%m-%d")
+	local DATE=$(date -u +"%Y-%m-%d-%H")
 
 	echo "querying reddit for $TERM..."
 

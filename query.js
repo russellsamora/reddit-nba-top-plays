@@ -9,7 +9,7 @@ const reddit = new snoowrap(config);
 // start of season videos (oct 18, 2017)
 const MIN_TIMESTAMP = 1508299200;
 // start of season weeks (oct, 16, 2017)
-const MIN_SCORE = 100;
+const MIN_SCORE = 1000;
 const DATE = d3.timeFormat("%m-%d-%Y")(new Date());
 
 function scrubPost(d) {
