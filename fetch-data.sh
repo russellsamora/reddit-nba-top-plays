@@ -30,7 +30,7 @@ function queryRedditAPI() {
 	"https://oauth.reddit.com/r/nba/search?q=$TERM&limit=100&t=week&sort=new&restrict_sr=true" \
 	| jq '[.data.children[]
 		| .data
-		| { id, title, score, url, created_utc, num_comments, media_title: .media.oembed.title, media_thumbnail_width: .media.oembed.thumbnail_width, media_thumbnail_height: .media.oembed.thumbnail_height, media_thumbnail_url: .media.oembed.thumbnail_url, media_width: .media.oembed.width, media_height: .media.oembed.height }
+		| { id, title, score, url, created_utc, num_comments }
 		| select(.score >= 1000 )
 		| select(.created_utc >= 1508280000 )
 		]' \
@@ -43,9 +43,11 @@ function concatResults() {
 	csvstack output/query/*.csv \
 	| csvgrep -c "url" -r "streamable|gfycat" \
 	| csvsort -c score -r \
+	> .tmp/query.csv
+
+	awk -F"," '!seen[$1]++' .tmp/query.csv \
 	> output/query--all.csv
 }
-
 
 # mute stderr for prettiness
 exec 2>/dev/null
@@ -54,3 +56,11 @@ getRedditToken
 queryRedditAPI "streamable"
 queryRedditAPI "gfycat"
 concatResults
+
+# function unique() {
+	# csvcut -c "id" .tmp/query.csv \
+	# | sed 1d \
+	# | uniq \
+	# | awk 'NR==1{$0="id\n"$0}1' \
+	# > .tmp/unique.csv
+# }

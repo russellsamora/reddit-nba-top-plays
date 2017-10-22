@@ -13,6 +13,7 @@ function addWeek() {
 function createWeek() {
 	local WEEK="$1"
 	csvgrep -c "week" -m $WEEK output/query--all-week.csv \
+	| head -n 11 \
 	> output/week/$WEEK.csv
 }
 
