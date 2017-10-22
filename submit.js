@@ -1,5 +1,5 @@
 function submit() {
-  const title = "Top Plays: October 16-23, 2017";
+  const title = "WEEK 1 RECAP: 20 most viewed plays + moments on r/nba";
   const intro = `##${title}\n\n`;
   const head = "Rank | Post | Video | Upvotes | Views\n";
   const def = "---: | --- | --- | ---: | ---:\n";

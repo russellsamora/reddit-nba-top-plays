@@ -52,7 +52,7 @@ function concatResults() {
 # mute stderr for prettiness
 exec 2>/dev/null
 
-# getRedditToken
-# queryRedditAPI "streamable"
-# queryRedditAPI "gfycat"
+getRedditToken
+queryRedditAPI "streamable"
+queryRedditAPI "gfycat"
 concatResults

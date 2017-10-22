@@ -75,10 +75,10 @@ function joinViews() {
 }
 
 # downloadHTML
-downloadVideo "streamable"
-downloadVideo "gfycat"
-extractViewsGfycat "gfycat"
-extractViewsStreamable "streamable"
+# downloadVideo "streamable"
+# downloadVideo "gfycat"
+# extractViewsGfycat "gfycat"
+# extractViewsStreamable "streamable"
 joinViews
 
 	
