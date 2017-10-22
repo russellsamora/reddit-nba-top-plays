@@ -18,23 +18,23 @@ function getRedditToken() {
 
 function queryRedditAPI() {
 	local TOKEN=$(< token)
-	local TERM="$1"
+	local SITE="$1"
 	local DATE=$(date -u +"%Y-%m-%d-%H")
 
-	echo "querying reddit for $TERM..."
+	echo "querying reddit for $SITE..."
 
 	curl \
 	-s \
 	-H "Authorization: bearer $TOKEN" \
 	-A "Terminal/0.1 by codenberg" \
-	"https://oauth.reddit.com/r/nba/search?q=$TERM&limit=100&t=week&sort=new&restrict_sr=true" \
+	"https://oauth.reddit.com/r/nba/search?q=$SITE&limit=100&t=week&sort=new&restrict_sr=true" \
 	| jq '[.data.children[]
 		| .data
 		| { id, title, score, url, created_utc, num_comments }
 		| select(.score >= 1000 )
 		| select(.created_utc >= 1508280000 )
 		]' \
-	| in2csv -f json > output/query/$DATE--$TERM.csv
+	| in2csv -f json > output/query/$DATE--$SITE.csv
 }
 
 function concatResults() {
@@ -52,15 +52,7 @@ function concatResults() {
 # mute stderr for prettiness
 exec 2>/dev/null
 
-getRedditToken
-queryRedditAPI "streamable"
-queryRedditAPI "gfycat"
+# getRedditToken
+# queryRedditAPI "streamable"
+# queryRedditAPI "gfycat"
 concatResults
-
-# function unique() {
-	# csvcut -c "id" .tmp/query.csv \
-	# | sed 1d \
-	# | uniq \
-	# | awk 'NR==1{$0="id\n"$0}1' \
-	# > .tmp/unique.csv
-# }
