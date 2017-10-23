@@ -37,22 +37,9 @@ function queryRedditAPI() {
 	| in2csv -f json > output/query/$DATE--$SITE.csv
 }
 
-function concatResults() {
-	echo "concatenating all query result files..."
-
-	csvstack output/query/*.csv \
-	| csvgrep -c "url" -r "streamable|gfycat" \
-	| csvsort -c score -r \
-	> .tmp/query.csv
-
-	awk -F"," '!seen[$1]++' .tmp/query.csv \
-	> output/query--all.csv
-}
-
 # mute stderr for prettiness
 exec 2>/dev/null
 
 getRedditToken
 queryRedditAPI "streamable"
 queryRedditAPI "gfycat"
-concatResults
