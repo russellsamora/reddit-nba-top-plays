@@ -15,7 +15,7 @@ data.forEach((d, i) => {
   d.num_comments = d3.format(",")(d.num_comments);
 });
 function submit() {
-  const timestamp = d3.timeFormat("%m-%d-%Y %I:M %p")(new Date());
+  const timestamp = d3.timeFormat("%m-%d-%Y %I:%M %p")(new Date());
   const title = "WEEK 1 RECAP: Top 30 most viewed plays and moments on r/nba";
   const intro = `##${title}\n\n`;
   const head = "Rank | Post | Video | Views | Upvotes | Comments \n";
