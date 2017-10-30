@@ -6,7 +6,7 @@ const config = require("./config");
 
 const reddit = new snoowrap(config);
 
-const data = d3.csvParse(fs.readFileSync("./output/week/2017-42.csv", "utf-8"));
+const data = d3.csvParse(fs.readFileSync("./output/week/2017-43.csv", "utf-8"));
 
 data.forEach((d, i) => {
   d.rank = i + 1;
@@ -16,7 +16,7 @@ data.forEach((d, i) => {
 });
 function submit() {
   const timestamp = d3.timeFormat("%m-%d-%Y %I:%M %p")(new Date());
-  const title = "WEEK 1 RECAP: Top 30 most viewed plays and moments on r/nba";
+  const title = "Top 30 most viewed plays and moments on r/nba (week 2)";
   const intro = `##${title}\n\n`;
   const head = "Rank | Post | Video | Views | Upvotes | Comments \n";
   const def = "---: | --- | --- | ---: | ---: | ---:\n";
