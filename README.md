@@ -1,8 +1,4 @@
 # Reddit NBA Top Plays
-Run daily: `./fetch-data.sh`
+Running daily on cron job 3x: `./fetch-data.sh`
 
-On monday:
-
-* `./concat-results.sh`
-* `./get-views.sh`
-* `./by-week.sh`
+On monday run `make week` 

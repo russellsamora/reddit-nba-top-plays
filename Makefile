@@ -1,17 +1,9 @@
-.PHONY: default clean reproduce
+.PHONY: default week
 
 default:
 
-clean:
-	rm -r output
-	mkdir output
-
-reproduce: clean
-
-fetch:
-	mkdir -p output output/query
-	./fetch-data.sh
-
 week:
 	mkdir -p output output/week
+	./concat-results.sh
+	./get-views.sh
 	./by-week.sh
