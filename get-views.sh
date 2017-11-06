@@ -29,6 +29,9 @@ function extractViews() {
 				VIEWS="${VISITS/ Total Views/}"
 		fi
 		local VIEWS_NUM="${VIEWS//\,/}"
+		
+		if [ -z $VIEWS_NUM ]; then VIEWS_NUM=0; fi
+
 		echo "$URL,$VIEWS_NUM" >> .tmp/views-$SITE.csv
 	done \
 	> /dev/null
