@@ -10,22 +10,21 @@ function downloadVideo() {
 	| while read -r URL; do
 		local FILE="${URL/https\:\/\/$SITE.com\//}"
 		local FILEPATH="output/html/$FILE"
-		local VIDEO=0
-		local IMAGE=0
-		if [ $SITE == "streamable" ]
-    	then
-				VIDEO=$(cat $FILEPATH | pup '#download attr{href}')
-				wget -q -nc -O "output/video/raw/$FILE.mp4" "https:$VIDEO"
-			else
-				VIDEO=$(cat $FILEPATH | pup '#mp4Source attr{src}')
-				curl --silent -o "output/video/raw/$FILE.mp4" "$VIDEO"
+		local URL=""
+		local VIDEO=""
+		local OUTPUT="output/video/raw/$FILE.mp4"
+
+		if [ ! -f $OUTPUT ]; then
+			if [ $SITE == "streamable" ];
+				then
+					VIDEO=$(cat $FILEPATH | pup '#download attr{href}')
+					wget -q -nc -O $OUTPUT "https:$VIDEO"
+				else
+					VIDEO=$(cat $FILEPATH | pup '#mp4Source attr{src}')
+					curl --silent -o $OUTPUT "$VIDEO"
+			fi
 		fi
-		# resize
-		if [ ! -f "output/video/resize/$FILE.mp4" ]; then
-			ffmpeg -loglevel panic -i "output/video/raw/$FILE.mp4" -vf scale=640:-1 "output/video/resize/$FILE.mp4"
-		fi
-	done \
-	> /dev/null
+	done > /dev/null
 }
 
 downloadVideo "streamable"

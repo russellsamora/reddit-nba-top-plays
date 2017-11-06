@@ -1,0 +1,50 @@
+.wall
+	margin-top 5rem
+	position relative
+	&__plays
+		width 100%
+		position relative
+		// display flex
+		// flex-wrap wrap
+	.play
+		opacity 0.15
+		transition opacity 250ms ease-in-out	
+		p
+			color $off-white
+			font-weight 600
+			padding 12rem 1rem 1rem 1rem
+			font-size 2rem
+			line-height 1.2
+			text-shadow 0 0 2px $off-black	
+			span
+				display block
+				color yellow
+				font-size 1rem
+				margin-top 0.25rem
+		&.is-active
+			opacity 0.8
+		
+	&__video
+		position fixed
+		top 0
+		left 0
+		width 100%
+		overflow hidden
+		video
+			min-width 100%
+			min-height 100%
+			width auto
+			height auto
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%,-50%)
+	
+	.video__overlay
+		width 100%
+		height 100%
+		position absolute
+		top 0
+		left 0
+		background url('assets/bg-pattern-dark.png')
+		opacity 0.25
