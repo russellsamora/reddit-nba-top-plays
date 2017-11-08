@@ -3,8 +3,7 @@
 function downloadVideo() {
 	local SITE="$1"
 	
-	csvstack output/week/*.csv \
-	| csvcut -c "url" \
+	csvcut -c "url" output/query--all-popularity.csv \
 	| tail -n +2 \
 	| grep "$SITE" \
 	| while read -r URL; do

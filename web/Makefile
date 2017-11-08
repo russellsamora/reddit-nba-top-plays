@@ -8,9 +8,10 @@ github:
 	git push
 
 copy-data:
-	cp -r ~/Documents/nba-top-plays/output/video/resize src/assets/video
-	cp -r ~/Documents/nba-top-plays/output/img/ src/assets/thumbnail
-	csvstack ~/Documents/nba-top-plays/output/week/*.csv > src/assets/data/all-weeks.csv
+	cp -rf ~/Documents/nba-top-plays/output/video/resize src/assets
+	cp -rf ~/Documents/nba-top-plays/output/img/ src/assets
+	cp -f ~/Documents/nba-top-plays/output/query--all-popularity.csv src/assets/data/popular.csv
+
 # live:
 #	 aws s3 sync dist s3://pudding.cool/year/month/name --delete --cache-control 'max-age=31536000' --exclude 'index.html'
 #	 aws s3 cp dist/index.html s3://pudding.cool/year/month/name/index.html

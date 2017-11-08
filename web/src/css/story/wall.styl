@@ -1,24 +1,25 @@
 .wall
-	margin-top 5rem
 	position relative
+
 	&__plays
 		width 100%
 		position relative
 		// display flex
 		// flex-wrap wrap
 	.play
-		opacity 0.15
+		opacity 0.05
 		transition opacity 250ms ease-in-out	
 		p
 			color $off-white
 			font-weight 600
-			padding 12rem 1rem 1rem 1rem
+			padding 0 1rem 10rem 1rem
 			font-size 2rem
 			line-height 1.2
 			text-shadow 0 0 2px $off-black	
+			margin 0
 			span
 				display block
-				color yellow
+				color $yellow
 				font-size 1rem
 				margin-top 0.25rem
 		&.is-active
@@ -30,6 +31,7 @@
 		left 0
 		width 100%
 		overflow hidden
+		z-index set-index('bottom')
 		video
 			min-width 100%
 			min-height 100%

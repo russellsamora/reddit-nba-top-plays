@@ -43,7 +43,7 @@ function joinViews() {
 	> output/query--all-views.csv
 }
 
-downloadHTML
+# downloadHTML
 extractViews "gfycat"
 extractViews "streamable"
 joinViews

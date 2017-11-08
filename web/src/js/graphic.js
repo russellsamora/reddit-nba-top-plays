@@ -10,8 +10,10 @@ const $plays = $wall.select('.wall__plays');
 
 function resize() {
 	const height = window.innerHeight;
-	console.log(height);
 	$video.st({ height });
+	const introHeight = Math.floor(window.innerHeight * 0.89);
+	d3.select('.intro').st({ height: introHeight });
+	scroller.resize();
 }
 
 function cleanData(d) {
@@ -19,6 +21,8 @@ function cleanData(d) {
 		...d,
 		score: +d.score,
 		views: +d.views,
+		week: +d.week,
+		popularity: +d.popularity,
 		num_comments: +d.num_comments,
 		media: d.url.split('/').pop(),
 	};
@@ -27,7 +31,7 @@ function cleanData(d) {
 function handleStepEnter({ element, direction, index }) {
 	$plays.selectAll('.play').classed('is-active', (d, i) => i === index);
 	const datum = rawData[index];
-	const src = `assets/video/${datum.media}.mp4`;
+	const src = `assets/resize/${datum.media}.mp4`;
 	$video.select('video').at({ src });
 }
 
@@ -39,7 +43,12 @@ function setup() {
 	const $playEnter = $play.enter().append('div.play');
 
 	const $p = $playEnter.append('p').text(d => d.title);
-	$p.append('span').text(d => `${d3.format(',')(d.views)} views`);
+	$p.append('span').text(d => {
+		const views = `${d3.format(',')(d.views)} views`;
+		const score = `${d3.format(',')(d.score)} votes`;
+		const comments = `${d3.format(',')(d.num_comments)} comments`;
+		return `${views} | ${score} | ${comments}`;
+	});
 
 	// .at('src', d => `assets/thumbnail/${d.media}.jpg`);
 
@@ -47,17 +56,16 @@ function setup() {
 	scroller
 		.setup({
 			step: '.play',
-			offset: 0,
+			offset: 0.9,
 			debug: true,
 		})
 		.onStepEnter(handleStepEnter)
 		.onStepExit(handleStepExit);
-
-	scroller.resize();
 }
 
 function init() {
-	d3.csv('assets/data/all-weeks.csv', cleanData, (err, res) => {
+	resize();
+	d3.csv('assets/data/popular.csv', cleanData, (err, res) => {
 		rawData = res;
 		console.log(rawData);
 		setup();
