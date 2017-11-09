@@ -9,7 +9,7 @@ github:
 
 copy-data:
 	cp -rf ~/Documents/nba-top-plays/output/video/resize src/assets
-	cp -rf ~/Documents/nba-top-plays/output/img/ src/assets
+	cp -rf ~/Documents/nba-top-plays/output/img src/assets
 	cp -f ~/Documents/nba-top-plays/output/query--all-popularity.csv src/assets/data/popular.csv
 
 # live:

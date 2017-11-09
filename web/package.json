@@ -39,6 +39,7 @@
     "gulp-util": "^3.0.7",
     "lodash.debounce": "^4.0.8",
     "nouislider": "^10.1.0",
+    "p-series": "^1.0.0",
     "prettier": "^1.6.1",
     "promise-polyfill": "^6.0.2",
     "request": "^2.81.0",

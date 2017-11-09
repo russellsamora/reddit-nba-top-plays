@@ -1,5 +1,6 @@
 // D3 is included by globally by default
 import Scrollama from 'scrollama';
+import pSeries from 'p-series';
 
 const scroller = Scrollama();
 
@@ -7,6 +8,36 @@ let rawData = null;
 const $wall = d3.select('#wall');
 const $video = $wall.select('.wall__video');
 const $plays = $wall.select('.wall__plays');
+
+function loadVideo(url) {
+	return new Promise((resolve, reject) => {
+		const req = new XMLHttpRequest();
+		req.open('GET', url, true);
+		req.responseType = 'blob';
+
+		req.onload = function() {
+			if (this.status === 200) {
+				const videoBlob = this.response;
+				const vid = URL.createObjectURL(videoBlob);
+				resolve();
+			}
+		};
+
+		req.onerror = function() {
+			reject(this);
+		};
+
+		req.send();
+	});
+}
+
+function preload() {
+	const urls = rawData.map(d => `assets/resize/${d.media}.mp4`);
+	const funcs = urls.map(loadVideo);
+	pSeries(funcs)
+		.then(() => console.log('done loading videos'))
+		.catch(console.error);
+}
 
 function resize() {
 	const height = window.innerHeight;
@@ -68,6 +99,7 @@ function init() {
 	d3.csv('assets/data/popular.csv', cleanData, (err, res) => {
 		rawData = res;
 		console.log(rawData);
+		preload();
 		setup();
 		resize();
 	});
