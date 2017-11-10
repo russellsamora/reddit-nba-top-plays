@@ -1,12 +1,12 @@
 {
   "title": "NBA Plays of the Year",
   "description": "According to views, votes, and comments on r/nba.",
-  "url": "https://pudding.cool/year/month/name/",
+  "url": "https://russellgoldenber.com/",
   "keywords": "tk",
-  "img": "https://pudding.cool/year/month/name/",
+  "img": "https://russellgoldenber.com/",
   "author": {
     "name": "Author Name",
-    "url": "https://twitter.com/puddingviz",
-    "twitterHandle": "@puddingviz"
+    "url": "https://twitter.com/codenberg",
+    "twitterHandle": "@codenberg"
   }
 }

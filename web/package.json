@@ -42,13 +42,14 @@
     "p-series": "^1.0.0",
     "prettier": "^1.6.1",
     "promise-polyfill": "^6.0.2",
+    "promise.waterfall": "^3.2.0",
     "request": "^2.81.0",
     "require-dir": "^0.3.2",
     "run-sequence": "^2.1.0",
     "scrollama": "^0.5.2",
     "source-map": "^0.5.7",
     "superagent": "^3.6.0",
-    "webpack": "^3.5.6",
+    "webpack": "^3.8.1",
     "webpack-stream": "^4.0.0"
   }
 }

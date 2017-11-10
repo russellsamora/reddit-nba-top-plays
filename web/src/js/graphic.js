@@ -1,6 +1,6 @@
 // D3 is included by globally by default
 import Scrollama from 'scrollama';
-import pSeries from 'p-series';
+import promiseWaterfall from 'promise.waterfall';
 
 const scroller = Scrollama();
 
@@ -17,8 +17,8 @@ function loadVideo(url) {
 
 		req.onload = function() {
 			if (this.status === 200) {
-				const videoBlob = this.response;
-				const vid = URL.createObjectURL(videoBlob);
+				// const videoBlob = this.response;
+				// const vid = URL.createObjectURL(videoBlob);
 				resolve();
 			}
 		};
@@ -34,7 +34,7 @@ function loadVideo(url) {
 function preload() {
 	const urls = rawData.map(d => `assets/resize/${d.media}.mp4`);
 	const funcs = urls.map(loadVideo);
-	pSeries(funcs)
+	promiseWaterfall(funcs)
 		.then(() => console.log('done loading videos'))
 		.catch(console.error);
 }
@@ -88,7 +88,7 @@ function setup() {
 		.setup({
 			step: '.play',
 			offset: 0.9,
-			debug: true,
+			debug: false,
 		})
 		.onStepEnter(handleStepEnter)
 		.onStepExit(handleStepExit);
