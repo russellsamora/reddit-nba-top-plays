@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 function downloadHTML() {
-	rm output/html/*
+	# rm output/html/*
 	csvcut -c "url" output/query--all.csv \
 	| tail -n +2 \
 	| wget -q -P "output/html" -i - \
@@ -43,7 +43,7 @@ function joinViews() {
 	> output/query--all-views.csv
 }
 
-# downloadHTML
+downloadHTML
 extractViews "gfycat"
 extractViews "streamable"
 joinViews
