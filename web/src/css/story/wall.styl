@@ -8,8 +8,10 @@
 		// display flex
 		// flex-wrap wrap
 	.play
-		opacity 0.05
+		opacity 0.2
 		transition opacity 250ms ease-in-out	
+		+mq('bp-3')
+			opacity 0.05
 		p
 			color $off-white
 			font-weight 900
@@ -40,7 +42,7 @@
 		left 0
 		width 100%
 		overflow hidden
-		z-index 0
+		z-index 1
 		+mq('bp-3')
 			z-index set-index('bottom')
 			top 0

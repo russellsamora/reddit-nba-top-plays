@@ -78,6 +78,10 @@ function handleStepEnter({ element, direction, index }) {
 function handleStepExit() {}
 
 function setup() {
+	const prop = mobile ? 'muted' : '';
+	const videoHTML = `<video autoplay loop ${prop}></video>`;
+	$video.select('.video__container').html(videoHTML);
+
 	const $play = $plays.selectAll('.play').data(rawData);
 
 	const $playEnter = $play.enter().append('div.play');
@@ -108,7 +112,6 @@ function init() {
 	resize();
 	d3.csv('assets/data/popular.csv', cleanData, (err, res) => {
 		rawData = res;
-		console.log(rawData);
 		preload();
 		setup();
 		resize();
