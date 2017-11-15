@@ -8,6 +8,11 @@ let rawData = null;
 const $wall = d3.select('#wall');
 const $video = $wall.select('.wall__video');
 const $plays = $wall.select('.wall__plays');
+const $intro = d3.select('.intro');
+
+const BP = 800;
+const INTRO_HEIGHT = 200;
+let mobile = false;
 
 function loadVideo(url) {
 	return new Promise((resolve, reject) => {
@@ -41,9 +46,13 @@ function preload() {
 
 function resize() {
 	const height = window.innerHeight;
-	$video.st({ height });
-	const introHeight = Math.floor(window.innerHeight * 0.89);
-	d3.select('.intro').st({ height: introHeight });
+	const width = d3.select('body').node().offsetWidth;
+	mobile = width < BP;
+	if (!mobile) {
+		$video.st({ height });
+		const introHeight = Math.floor(window.innerHeight * 0.89);
+		$intro.st({ height: introHeight });
+	}
 	scroller.resize();
 }
 
@@ -84,10 +93,11 @@ function setup() {
 	// .at('src', d => `assets/thumbnail/${d.media}.jpg`);
 
 	// setup the instance, pass callback functions
+	const offset = mobile ? INTRO_HEIGHT / window.innerHeight : 0.9;
 	scroller
 		.setup({
 			step: '.play',
-			offset: 0.9,
+			offset,
 			debug: false,
 		})
 		.onStepEnter(handleStepEnter)

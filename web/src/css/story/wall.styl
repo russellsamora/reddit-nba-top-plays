@@ -4,6 +4,7 @@
 	&__plays
 		width 100%
 		position relative
+		z-index 0
 		// display flex
 		// flex-wrap wrap
 	.play
@@ -12,38 +13,47 @@
 		p
 			color $off-white
 			font-weight 900
-			padding 0 1rem 10rem 1rem
-			font-size 2rem
+			padding 0 1rem 200px 1rem
+			font-size 1.25rem
 			line-height 1.2
 			text-shadow 0 0 3px $off-black	
 			margin 0
+			+mq('bp-3')
+				padding 0 1rem 10rem 1rem
+				font-size 2rem
 			span
 				display block
 				font-family $mono
 				color $yellow
-				font-size 1rem
+				font-size 0.7rem
 				font-weight 700
 				margin-top 0.25rem
 				text-shadow 0 0 3px $off-black
+				+mq('bp-3')
+					font-size 1rem
 		&.is-active
 			opacity 0.9
 		
 	&__video
 		position fixed
-		top 0
+		top 320px
 		left 0
 		width 100%
 		overflow hidden
-		z-index set-index('bottom')
+		z-index 0
+		+mq('bp-3')
+			z-index set-index('bottom')
+			top 0
 		video
-			min-width 100%
-			min-height 100%
-			width auto
-			height auto
-			position absolute
-			top 50%
-			left 50%
-			transform translate(-50%,-50%)
+			+mq('bp-3')
+				min-width 100%
+				min-height 100%
+				width auto
+				height auto
+				position absolute
+				top 50%
+				left 50%
+				transform translate(-50%,-50%)
 	
 	.video__overlay
 		width 100%

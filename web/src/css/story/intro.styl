@@ -8,11 +8,13 @@
 		text-align center
 		margin 0
 		padding 0
-		padding-top 2rem
 		font-weight 900
 		color $yellow
 		text-shadow 0 0 3px $off-black
-		set-type-size('large', true)
+		set-type-size('medium', true)
+		+mq('bp-2')
+			set-type-size('large', true)
+			padding-top 2rem
 		font-family $mono
 	&__hed
 		max-width 60rem
@@ -23,11 +25,12 @@
 		text-align center
 		color $yellow
 		text-shadow 0 0 3px $off-black
-		set-type-size('xx-large', true)
+		set-type-size('large', false)
+		line-height 1.2
 		+mq('bp-2')
-			set-type-size('xxx-large', true)
+			set-type-size('xx-large', false)
 		+mq('bp-3')
-			set-type-size('xxxx-large', true)
+			set-type-size('xxxx-large', false)
 	
 	&__byline
 		max-width $column-width
@@ -40,8 +43,9 @@
 	&__dek
 		max-width $column-width
 		text-shadow 0 0 3px $off-black
-		margin 0 auto
+		margin 0.5rem auto
 		// padding-top 1.5rem
 		font-weight 700
 		text-align center
 		set-type-size('medium', true)
+		line-height 1.5
