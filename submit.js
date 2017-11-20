@@ -6,7 +6,7 @@ const config = require("./config");
 
 const reddit = new snoowrap(config);
 
-const week = 45;
+const week = 46;
 // const sub = "snoowrap";
 const sub = "nba";
 
@@ -22,7 +22,7 @@ data.forEach((d, i) => {
 });
 function submit() {
   const timestamp = d3.timeFormat("%m-%d-%Y %I:%M %p")(new Date());
-  const title = "ICYMI: top 30 most viewed plays + moments on r/nba (week 4)";
+  const title = "ICYMI: top 30 most viewed plays + moments on r/nba (week 5)";
   const intro = `##${title}\n\n`;
   const head = "Rank | Post | Video | Views | Upvotes | Comments \n";
   const def = "---: | --- | --- | ---: | ---: | ---:\n";
@@ -32,7 +32,8 @@ function submit() {
     })
     .join("");
   const outro = `
-	\n\n[Week 4](https://www.reddit.com/r/nba/comments/7cnwck/icymi_top_30_most_viewed_plays_moments_on_rnba/)
+	\n\n[Week 5](https://www.reddit.com/r/nba/comments/7e9tdm/icymi_top_30_most_viewed_plays_moments_on_rnba/)
+	\n[Week 4](https://www.reddit.com/r/nba/comments/7cnwck/icymi_top_30_most_viewed_plays_moments_on_rnba/)
 	\n[Week 3](https://www.reddit.com/r/nba/comments/7b65kf/icymi_top_30_most_viewed_plays_moments_on_rnba/)
 	\n[Week 2](https://www.reddit.com/r/nba/comments/79pfj8/top_30_most_viewed_plays_and_moments_on_rnba_week/)
 	\n[Week 1](https://www.reddit.com/r/nba/comments/787z5h/week_1_recap_top_30_most_viewed_plays_and_moments/)
