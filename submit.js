@@ -6,8 +6,8 @@ const config = require('./config');
 
 const reddit = new snoowrap(config);
 
-const week = 47;
-const weekNorm = 6;
+const week = 48;
+const weekNorm = 7;
 // const sub = 'snoowrap';
 const sub = 'nba';
 
