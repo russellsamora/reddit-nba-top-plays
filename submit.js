@@ -6,8 +6,8 @@ const config = require('./config');
 
 const reddit = new snoowrap(config);
 
-const week = 48;
-const weekNorm = 7;
+const week = 49;
+const weekNorm = 8;
 // const sub = 'snoowrap';
 const sub = 'nba';
 
@@ -38,7 +38,8 @@ function submit() {
     .join('');
 
   const outro = `
-	\n\n[Week 6](https://www.reddit.com/r/nba/comments/7fvfsp/icymi_top_30_most_viewed_plays_moments_on_rnba/)
+	\n\n[Week 7](https://www.reddit.com/r/nba/comments/7hi3kd/icymi_top_30_most_viewed_plays_moments_on_rnba/)
+	\n[Week 6](https://www.reddit.com/r/nba/comments/7fvfsp/icymi_top_30_most_viewed_plays_moments_on_rnba/)
 	\n[Week 5](https://www.reddit.com/r/nba/comments/7e9tdm/icymi_top_30_most_viewed_plays_moments_on_rnba/)
 	\n[Week 4](https://www.reddit.com/r/nba/comments/7cnwck/icymi_top_30_most_viewed_plays_moments_on_rnba/)
 	\n[Week 3](https://www.reddit.com/r/nba/comments/7b65kf/icymi_top_30_most_viewed_plays_moments_on_rnba/)
