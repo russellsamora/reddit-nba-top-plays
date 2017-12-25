@@ -6,10 +6,10 @@ const config = require('./config');
 
 const reddit = new snoowrap(config);
 
-const week = 50;
-const weekNorm = 9;
-// const sub = 'snoowrap';
-const sub = 'nba';
+const week = 51;
+const weekNorm = 10;
+const sub = 'snoowrap';
+// const sub = 'nba';
 
 const data = d3.csvParse(
   fs.readFileSync(`./output/week/2017-${week}.csv`, 'utf-8')
