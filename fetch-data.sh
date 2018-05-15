@@ -27,7 +27,7 @@ function queryRedditAPI() {
 	-s \
 	-H "Authorization: bearer $TOKEN" \
 	-A "Terminal/0.1 by codenberg" \
-	"https://oauth.reddit.com/r/nba/search?q=$SITE&limit=100&t=week&sort=new&restrict_sr=true" \
+	"https://oauth.reddit.com/r/nba/search?q=$SITE&limit=100&t=week&sort=new&restrict_sr=true&force_search_stack=fusion" \
 	| jq '[.data.children[]
 		| .data
 		| { id, title, score, url, created_utc, num_comments }

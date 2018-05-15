@@ -7,3 +7,6 @@ week:
 	./concat-results.sh
 	./get-views.sh
 	./by-week.sh
+
+copy-data:
+	cp ./output/recent-streamable* ~/Pudding/helpers/top-plays/input/raw
